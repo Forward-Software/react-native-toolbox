@@ -1,0 +1,9 @@
+{
+  "extends": ["tslint:latest", "tslint-config-prettier"],
+  "rules": {
+    "interface-name": [true, "never-prefix"],
+    "max-line-length": [true, 130],
+    "no-console": false,
+    "no-implicit-dependencies": false
+  }
+}
