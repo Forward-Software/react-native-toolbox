@@ -8,12 +8,16 @@
 
 import program from 'commander';
 
-import IconGenerator from './commands/icon-generator';
+import { IconGenerator, SplashGenerator } from './commands';
 
 program.description(process.env.PKG_DESCRIPTION).version(process.env.PKG_VERSION);
 
 program.command('icons').action(cmd => {
   new IconGenerator().generateIcons();
+});
+
+program.command('splash').action(cmd => {
+  new SplashGenerator().generateSplashscreens();
 });
 
 program.parse(process.argv);

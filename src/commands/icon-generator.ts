@@ -12,7 +12,7 @@ import mkdirp from 'mkdirp-promise';
 import path from 'path';
 import sharp from 'sharp';
 
-import { FileUtilis } from '../utils/file-utils';
+import { FileUtils } from '../utils/file-utils';
 
 interface SizeDefinitionAndroid {
   density: string;
@@ -30,23 +30,6 @@ interface SizeDefinitionIOS {
 interface SizeDefinitions {
   android: SizeDefinitionAndroid[];
   iOS: SizeDefinitionIOS[];
-}
-
-interface ContentJsonImage {
-  filename: string;
-  idiom: string;
-  size: string;
-  scale: string;
-}
-
-interface ContentJsonInfo {
-  author: string;
-  version: number;
-}
-
-interface ContentJson {
-  images: ContentJsonImage[];
-  info: ContentJsonInfo;
 }
 
 enum MaskType {
@@ -134,7 +117,7 @@ export default class IconGenerator {
   }
 
   public async generateIcons(): Promise<void> {
-    const sourceFilesExists = FileUtilis.checkAssetFile(this.sourceImageFilePath);
+    const sourceFilesExists = FileUtils.checkAssetFile(this.sourceImageFilePath);
     if (!sourceFilesExists) {
       console.error(`Source file ${colors.cyan(this.sourceImageFilePath)} not found! ${colors.red('ABORTING')}`);
       process.exit(1);

@@ -8,7 +8,7 @@
 
 import fs from 'fs';
 
-export class FileUtilis {
+export class FileUtils {
   public static checkAssetFile(filePath: string): boolean {
     return fs.existsSync(filePath);
   }
