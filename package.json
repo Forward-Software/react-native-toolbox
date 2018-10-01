@@ -46,7 +46,8 @@
     "watch": "rollup -cw",
     "lint": "tslint src/**/*.ts",
     "prebuild": "rimraf dist/",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "prepublishOnly": "npm run build"
   },
   "files": [
     "dist",
