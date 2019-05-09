@@ -1,10 +1,10 @@
 /*
-* Copyright (c) 2018 Mattia Panzeri <mattia.panzeri93@gmail.com>
-* 
-* This Source Code Form is subject to the terms of the Mozilla Public
-* License, v. 2.0. If a copy of the MPL was not distributed with this
-* file, You can obtain one at http://mozilla.org/MPL/2.0/. 
-*/
+ * Copyright (c) 2018 Mattia Panzeri <mattia.panzeri93@gmail.com>
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
 
 import colors from 'colors';
 import fs from 'fs';
@@ -27,50 +27,50 @@ export default class SplashGenerator {
     {
       density: 'ldpi',
       height: 320,
-      width: 200
+      width: 200,
     },
     {
       density: 'mdpi',
       height: 480,
-      width: 320
+      width: 320,
     },
     {
       density: 'hdpi',
       height: 800,
-      width: 480
+      width: 480,
     },
     {
       density: 'xhdpi',
       height: 1280,
-      width: 720
+      width: 720,
     },
     {
       density: 'xxhdpi',
       height: 1600,
-      width: 960
+      width: 960,
     },
     {
       density: 'xxxhdpi',
       height: 1920,
-      width: 1280
-    }
+      width: 1280,
+    },
   ];
 
   private static defaultIOSSizes: SplashscreenSizeDefinition[] = [
     {
       height: 480,
-      width: 320
+      width: 320,
     },
     {
       density: '2x',
       height: 1334,
-      width: 750
+      width: 750,
     },
     {
       density: '3x',
       height: 2208,
-      width: 1242
-    }
+      width: 1242,
+    },
   ];
 
   private appName: string;
@@ -95,7 +95,7 @@ export default class SplashGenerator {
     const sourceFilesExists = FileUtils.checkAssetFile(this.sourceImageFilePath);
     if (!sourceFilesExists) {
       console.error(
-        `Source file ${colors.cyan(this.sourceImageFilePath)} not found! ${colors.red('ABORTING')}`
+        `Source file ${colors.cyan(this.sourceImageFilePath)} not found! ${colors.red('ABORTING')}`,
       );
       process.exit(1);
     }
@@ -127,8 +127,7 @@ export default class SplashGenerator {
 
       // Resize image
       await sharp(this.sourceImageFilePath)
-        .resize(width, height)
-        .crop()
+        .resize(width, height, { fit: 'cover' })
         .toFile(path.join(outputDirPath, `drawable-${density}`, `splashscreen.png`));
     }
   }
@@ -155,8 +154,7 @@ export default class SplashGenerator {
     for (const { density, height, width } of this.iOSSizes) {
       console.info(`- Generate iOS Splashscreen${density ? ` (${density})` : ''}...`);
       await sharp(this.sourceImageFilePath)
-        .resize(width, height)
-        .crop()
+        .resize(width, height, { fit: 'cover' })
         .toFile(path.join(outputDirPath, this.getIOSAssetNameForDensity(density)));
     }
   }
@@ -168,8 +166,8 @@ export default class SplashGenerator {
       images: [],
       info: {
         author: 'react-native-toolbox',
-        version: 1
-      }
+        version: 1,
+      },
     };
 
     // Create Contents.json structure
@@ -177,7 +175,7 @@ export default class SplashGenerator {
       contentJson.images.push({
         filename: this.getIOSAssetNameForDensity(density),
         idiom: 'universal',
-        scale: `${density || '1x'}`
+        scale: `${density || '1x'}`,
       });
     }
 

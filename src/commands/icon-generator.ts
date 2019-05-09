@@ -155,11 +155,10 @@ export default class IconGenerator {
     for (const { baseSize, name, idiom, scales } of this.iOSSizes) {
       for (const scale of scales) {
         const filename = this.getIOSIconName(name, scale);
-
+        const imageSize = baseSize * scale;
         console.info(`- Generate iOS icon ${filename}...`);
         await sharp(this.sourceImageFilePath)
-          .resize(baseSize * scale)
-          .crop()
+          .resize(imageSize, imageSize, { fit: 'cover' })
           .toFile(path.join(outputDirPath, filename));
       }
     }
