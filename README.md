@@ -8,6 +8,12 @@
 yarn add -D @panz3r/react-native-toolbox
 ```
 
+or use it directly with
+
+```bash
+npx @panz3r/react-native-toolbox <command>
+```
+
 ## Generate App icons
 
 To generate app icons:
