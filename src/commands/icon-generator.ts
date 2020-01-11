@@ -221,7 +221,13 @@ export default class IconGenerator {
     // resize & cut image - rounded corners
     await sharp(this.sourceImageFilePath)
       .resize(size)
-      .overlayWith(roundedCorners, { cutout: true })
+      .composite([
+        {
+          input: roundedCorners,
+          gravity: 'center',
+          blend: 'dest-in',
+        },
+      ])
       .toFile(path.join(dDir, outputName || `ic_launcher.png`));
 
     // resize & cut image - rounded
@@ -230,7 +236,13 @@ export default class IconGenerator {
 
       await sharp(this.sourceImageFilePath)
         .resize(size)
-        .overlayWith(circle, { cutout: true })
+        .composite([
+          {
+            input: circle,
+            gravity: 'center',
+            blend: 'dest-in',
+          },
+        ])
         .toFile(path.join(dDir, outputName || `ic_launcher_round.png`));
     }
   }
