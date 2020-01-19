@@ -55,3 +55,7 @@ rn-toolbox dotenv <env name> # such as 'dev' or 'prod'
 ---
 
 Made with :sparkles: & :heart: by [Mattia Panzeri](https://github.com/panz3r) and [contributors](https://github.com/panz3r/react-native-toolbox/graphs/contributors)
+
+If you found this project to be helpful, please consider buying me a coffee.
+
+[![buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoff.ee/4f18nT0Nk)
