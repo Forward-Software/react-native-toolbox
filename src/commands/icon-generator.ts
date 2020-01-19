@@ -223,9 +223,9 @@ export default class IconGenerator {
       .resize(size)
       .composite([
         {
-          input: roundedCorners,
-          gravity: 'center',
           blend: 'dest-in',
+          gravity: 'center',
+          input: roundedCorners,
         },
       ])
       .toFile(path.join(dDir, outputName || `ic_launcher.png`));
@@ -238,9 +238,9 @@ export default class IconGenerator {
         .resize(size)
         .composite([
           {
-            input: circle,
-            gravity: 'center',
             blend: 'dest-in',
+            gravity: 'center',
+            input: circle,
           },
         ])
         .toFile(path.join(dDir, outputName || `ic_launcher_round.png`));
