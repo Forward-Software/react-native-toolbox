@@ -38,6 +38,20 @@ To generate app splashscreen images (to be used by [`react-native-splash-screen`
 rn-toolbox splash
 ```
 
+## Setup Environment
+
+To setup a `.env` file (to be used by [`react-native-dotenv`](https://github.com/zetachang/react-native-dotenv)):
+
+- create `.env.dev` and `.env.prod` files (other files are supported too, be creative ;))
+- run
+```bash
+rn-toolbox dotenv <env name> # such as 'dev' or 'prod'
+```
+
+*N.B:* running `react-native start` command after might require `--reset-cache` to read new env variables.
+
+> This script has been inspired by this article [`Multi environment variable setup for React Native application`](https://medium.com/commutatus/multi-environment-variable-setup-for-react-native-application-70fde4de657f)
+
 ---
 
 Made with :sparkles: & :heart: by [Mattia Panzeri](https://github.com/panz3r) and [contributors](https://github.com/panz3r/react-native-toolbox/graphs/contributors)
