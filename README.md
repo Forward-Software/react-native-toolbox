@@ -1,8 +1,17 @@
-# React Native Toolbox
+
+React Native Toolbox
+=====================
 
 > A set of scripts to simplify React Native development
 
-## Install
+[![License](https://img.shields.io/npm/l/@panz3r/react-native-toolbox.svg)](https://github.com/panz3r/react-native-toolbox/blob/master/package.json) [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
+
+[![Version](https://img.shields.io/npm/v/@panz3r/react-native-toolbox.svg)](https://npmjs.org/package/@panz3r/react-native-toolbox) [![Downloads/week](https://img.shields.io/npm/dw/@panz3r/react-native-toolbox.svg)](https://npmjs.org/package/@panz3r/react-native-toolbox)
+
+<!-- toc -->
+<!-- tocstop -->
+
+# Install
 
 ```bash
 yarn add -D @panz3r/react-native-toolbox
@@ -14,43 +23,9 @@ or use it directly with
 npx @panz3r/react-native-toolbox <command>
 ```
 
-## Generate App icons
-
-To generate app icons:
-
-- create a folder named `assets` at the root of your React Native project
-- place an `icon.png` file (at least **1024x1024px**) inside the `assets` folder
-- run
-
-```bash
-rn-toolbox icons
-```
-
-## Generate App splashscreen
-
-To generate app splashscreen images (to be used by [`react-native-splash-screen`](https://github.com/crazycodeboy/react-native-splash-screen)):
-
-- create a folder named `assets` at the root of your React Native project
-- place an `splashscreen.png` file (at least **1242x2208px**) inside the `assets` folder
-- run
-
-```bash
-rn-toolbox splash
-```
-
-## Setup Environment
-
-To setup a `.env` file (to be used by [`react-native-dotenv`](https://github.com/zetachang/react-native-dotenv)):
-
-- create `.env.dev` and `.env.prod` files (other files are supported too, be creative ;))
-- run
-```bash
-rn-toolbox dotenv <env name> # such as 'dev' or 'prod'
-```
-
-*N.B:* running `react-native start` command after might require `--reset-cache` to read new env variables.
-
-> This script has been inspired by this article [`Multi environment variable setup for React Native application`](https://medium.com/commutatus/multi-environment-variable-setup-for-react-native-application-70fde4de657f)
+# Commands
+<!-- commands -->
+<!-- commandsstop -->
 
 ---
 
