@@ -117,13 +117,13 @@ export default class SplashGenerator {
 
     // Create base output path
     const outputDirPath = './android/app/src/main/res';
-    await mkdirp(outputDirPath);
+    mkdirp(outputDirPath);
 
     // Create required images
     for (const { density, width, height } of this.androidSizes) {
       console.info(`- Generate Android Splashscreen (${density})...`);
       // Create density specific folder, if it doesn't exists
-      await mkdirp(path.join(outputDirPath, `drawable-${density}`));
+      mkdirp(path.join(outputDirPath, `drawable-${density}`));
 
       // Resize image
       await sharp(this.sourceImageFilePath)
@@ -140,7 +140,7 @@ export default class SplashGenerator {
 
     // Create output path
     const outputDirPath = `./ios/${this.appName}/Images.xcassets/Splashscreen.imageset`;
-    await mkdirp(outputDirPath);
+    mkdirp(outputDirPath);
 
     // Create Splashscreen images
     await this.generateIOSSplash(outputDirPath);

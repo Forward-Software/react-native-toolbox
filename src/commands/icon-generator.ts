@@ -149,7 +149,7 @@ export default class IconGenerator {
 
   private async generateIOSIcons(outputDirPath: string): Promise<void> {
     // Create output path
-    await mkdirp(outputDirPath);
+    mkdirp(outputDirPath);
 
     // Create required images
     for (const { baseSize, name, idiom, scales } of this.iOSSizes) {
@@ -216,7 +216,7 @@ export default class IconGenerator {
 
     // Create density-specific path
     const dDir = density !== 'web' ? path.join(baseOutputDirPath, `res/mipmap-${density}`) : baseOutputDirPath;
-    await mkdirp(dDir);
+    mkdirp(dDir);
 
     // resize & cut image - rounded corners
     await sharp(this.sourceImageFilePath)
