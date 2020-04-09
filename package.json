@@ -45,11 +45,12 @@
     ]
   },
   "scripts": {
-    "postpack": "rm -f oclif.manifest.json",
-    "posttest": "eslint . --ext .ts --config .eslintrc",
-    "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+    "cleanup": "rm -rf android/ ios/ lib/ .nyc_output/ oclif.manifest.json .env",
     "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
-    "version": "oclif-dev readme && git add README.md"
+    "posttest": "eslint . --ext .ts --config .eslintrc",
+    "version": "oclif-dev readme && git add README.md",
+    "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+    "postpack": "rm -f oclif.manifest.json"
   },
   "bin": {
     "rn-toolbox": "./bin/run"
