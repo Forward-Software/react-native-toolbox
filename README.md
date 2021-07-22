@@ -50,7 +50,7 @@ DESCRIPTION
   Manage .env files for react-native-dotenv for a specific environment (development, production, etc...)
 ```
 
-_See code: [src/commands/dotenv.ts](https://github.com/panz3r/react-native-toolbox/blob/v2.0.0/src/commands/dotenv.ts)_
+_See code: [src/commands/dotenv.ts](https://github.com/panz3r/react-native-toolbox/blob/v2.1.0/src/commands/dotenv.ts)_
 
 ## `rn-toolbox help [COMMAND]`
 
@@ -89,7 +89,7 @@ DESCRIPTION
   The base icon file should be at least 1024x1024px.
 ```
 
-_See code: [src/commands/icons.ts](https://github.com/panz3r/react-native-toolbox/blob/v2.0.0/src/commands/icons.ts)_
+_See code: [src/commands/icons.ts](https://github.com/panz3r/react-native-toolbox/blob/v2.1.0/src/commands/icons.ts)_
 
 ## `rn-toolbox splash [FILE]`
 
@@ -111,7 +111,7 @@ DESCRIPTION
   The base splashscreen file should be at least 1242x2208px.
 ```
 
-_See code: [src/commands/splash.ts](https://github.com/panz3r/react-native-toolbox/blob/v2.0.0/src/commands/splash.ts)_
+_See code: [src/commands/splash.ts](https://github.com/panz3r/react-native-toolbox/blob/v2.1.0/src/commands/splash.ts)_
 <!-- commandsstop -->
 
 ---
