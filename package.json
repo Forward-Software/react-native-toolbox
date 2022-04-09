@@ -42,8 +42,7 @@
     "dirname": "rn-toolbox",
     "commands": "./dist/commands",
     "plugins": [
-      "@oclif/plugin-help",
-      "@oclif/plugin-plugins"
+      "@oclif/plugin-help"
     ]
   },
   "scripts": {
@@ -62,7 +61,6 @@
   "dependencies": {
     "@oclif/core": "^1",
     "@oclif/plugin-help": "^5",
-    "@oclif/plugin-plugins": "^2.0.1",
     "chalk": "^4.0.0",
     "listr": "^0.14.3",
     "sharp": "^0.30.3"
