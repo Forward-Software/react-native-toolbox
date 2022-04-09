@@ -1,12 +1,11 @@
-
 React Native Toolbox
 =====================
 
 > A set of scripts to simplify React Native development
 
-[![License](https://img.shields.io/npm/l/@panz3r/react-native-toolbox.svg)](https://github.com/panz3r/react-native-toolbox/blob/master/package.json) [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
+[![License](https://img.shields.io/npm/l/@forward-software/react-native-toolbox.svg)](https://github.com/Forward-Software/react-native-toolbox/blob/main/LICENSE) [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 
-[![Version](https://img.shields.io/npm/v/@panz3r/react-native-toolbox.svg)](https://npmjs.org/package/@panz3r/react-native-toolbox) [![Downloads/week](https://img.shields.io/npm/dw/@panz3r/react-native-toolbox.svg)](https://npmjs.org/package/@panz3r/react-native-toolbox)
+[![Version](https://img.shields.io/npm/v/@forward-software/react-native-toolbox.svg)](https://npmjs.org/package/@forward-software/react-native-toolbox) [![Downloads/week](https://img.shields.io/npm/dw/@forward-software/react-native-toolbox.svg)](https://npmjs.org/package/@forward-software/react-native-toolbox)
 
 <!-- toc -->
 * [Install](#install)
@@ -16,16 +15,17 @@ React Native Toolbox
 # Install
 
 ```bash
-yarn add -D @panz3r/react-native-toolbox
+yarn add -D @forward-software/react-native-toolbox
 ```
 
 or use it directly with
 
 ```bash
-npx @panz3r/react-native-toolbox <command>
+npx @forward-software/react-native-toolbox <command>
 ```
 
 # Commands
+
 <!-- commands -->
 * [`rn-toolbox dotenv ENVIRONMENTNAME`](#rn-toolbox-dotenv-environmentname)
 * [`rn-toolbox help [COMMAND]`](#rn-toolbox-help-command)
@@ -52,7 +52,7 @@ DESCRIPTION
   Manage .env files for react-native-dotenv for a specific environment (development, production, etc...)
 ```
 
-_See code: [dist/commands/dotenv.ts](https://github.com/panz3r/react-native-toolbox/blob/v3.0.0/dist/commands/dotenv.ts)_
+_See code: [dist/commands/dotenv.ts](https://github.com/forward-software/react-native-toolbox/blob/v3.0.0/dist/commands/dotenv.ts)_
 
 ## `rn-toolbox help [COMMAND]`
 
@@ -97,7 +97,7 @@ DESCRIPTION
   The base icon file should be at least 1024x1024px.
 ```
 
-_See code: [dist/commands/icons.ts](https://github.com/panz3r/react-native-toolbox/blob/v3.0.0/dist/commands/icons.ts)_
+_See code: [dist/commands/icons.ts](https://github.com/forward-software/react-native-toolbox/blob/v3.0.0/dist/commands/icons.ts)_
 
 ## `rn-toolbox splash [FILE]`
 
@@ -122,13 +122,15 @@ DESCRIPTION
   The base splashscreen file should be at least 1242x2208px.
 ```
 
-_See code: [dist/commands/splash.ts](https://github.com/panz3r/react-native-toolbox/blob/v3.0.0/dist/commands/splash.ts)_
+_See code: [dist/commands/splash.ts](https://github.com/forward-software/react-native-toolbox/blob/v3.0.0/dist/commands/splash.ts)_
 <!-- commandsstop -->
+
+## License
+
+Mozilla Public License 2.0
 
 ---
 
-Made with :sparkles: & :heart: by [Mattia Panzeri](https://github.com/panz3r) and [contributors](https://github.com/panz3r/react-native-toolbox/graphs/contributors)
+Made with ✨ & ❤️ by [ForWarD Software](https://github.com/Forward-Software) and [contributors](https://github.com/Forward-Software/react-native-toolbox/graphs/contributors)
 
-If you found this project to be helpful, please consider buying me a coffee.
-
-[![buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoff.ee/4f18nT0Nk)
+If you found this project to be helpful, please consider contacting us to develop your React and React Native projects.
