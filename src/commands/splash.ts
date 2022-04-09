@@ -6,11 +6,11 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-import {Command, flags} from '@oclif/command'
-import * as chalk from 'chalk'
-import {readFileSync, promises as fsp} from 'fs'
+import {Command, Flags} from '@oclif/core'
+import {cyan, green, red} from 'chalk'
 import * as Listr from 'listr'
-import {join} from 'path'
+import {readFileSync, promises as fsp} from 'node:fs'
+import {join} from 'node:path'
 import * as sharp from 'sharp'
 
 import {checkAssetFile, mkdirp} from '../utils/file-utils'
@@ -89,8 +89,8 @@ The base splashscreen file should be at least 1242x2208px.
 `
 
   static flags = {
-    help: flags.help({char: 'h'}),
-    appName: flags.string({
+    help: Flags.help({char: 'h'}),
+    appName: Flags.string({
       char: 'a',
       description: "the appName used to build output assets path. Default is retrieved from 'app.json' file.",
       default: () => {
@@ -114,16 +114,16 @@ The base splashscreen file should be at least 1242x2208px.
     },
   ]
 
-  async run() {
-    const {args, flags} = this.parse(Splash)
+  async run(): Promise<void> {
+    const {args, flags} = await this.parse(Splash)
 
     const sourceFilesExists = checkAssetFile(args.file)
     if (!sourceFilesExists) {
-      this.error(`Source file ${chalk.cyan(args.file)} not found! ${chalk.red('ABORTING')}`)
+      this.error(`Source file ${cyan(args.file)} not found! ${red('ABORTING')}`)
     }
 
     if (!flags.appName) {
-      this.error(`Failed to retrive ${chalk.cyan('appName')} value. Please specify it with the ${chalk.green('appName')} flag or check that ${chalk.cyan('app.json')} file exists. ${chalk.red('ABORTING')}`)
+      this.error(`Failed to retrive ${cyan('appName')} value. Please specify it with the ${green('appName')} flag or check that ${cyan('app.json')} file exists. ${red('ABORTING')}`)
     }
 
     this.log(`Generating splashscreens for '${flags.appName}' app...`)
@@ -188,24 +188,25 @@ The base splashscreen file should be at least 1242x2208px.
           {
             title: 'Generate splashscreens',
             task: () => {
-              const androidSplashTasks = AndroidSplashscreenSizes.reduce((acc, {density, width, height}) => {
-                const densityFolderPath = join(baseAndroidOutputDirPath, `drawable-${density}`)
+              const androidSplashTasks = AndroidSplashscreenSizes.flatMap(({density, width, height}) => {
+                const res: Listr.ListrTask[] = []
 
+                const densityFolderPath = join(baseAndroidOutputDirPath, `drawable-${density}`)
                 const densityFolderTask: Listr.ListrTask = {
                   title: `Create Android '${density}' assets folder`,
                   task: () => mkdirp(densityFolderPath),
                 }
-                acc.push(densityFolderTask)
+                res.push(densityFolderTask)
 
                 const outputFile = join(densityFolderPath, 'splashscreen.png')
                 const densitySplashscreenTask: Listr.ListrTask = {
                   title: `Generate ${join(`drawable-${density}`, 'splashscreen.png')}...`,
                   task: () => this.generateSplashscreen(args.file, outputFile,  width, height),
                 }
-                acc.push(densitySplashscreenTask)
+                res.push(densitySplashscreenTask)
 
-                return acc
-              }, [] as Listr.ListrTask[])
+                return res
+              })
 
               return new Listr(androidSplashTasks)
             },
@@ -217,7 +218,7 @@ The base splashscreen file should be at least 1242x2208px.
     try {
       await workflow.run()
     } catch (error) {
-      this.error(error)
+      this.error(error as Error)
     }
   }
 

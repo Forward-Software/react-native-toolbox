@@ -217,10 +217,15 @@ $RECYCLE.BIN/
 
 # End of https://www.gitignore.io/api/macos,windows,node,webstorm,visualstudiocode
 
+*-debug.log
+*-error.log
+/.nyc_output
 /dist
 /lib
-/tmp
 /package-lock.json
+/tmp
+node_modules
+oclif.manifest.json
 
 # Test-generated resources
 /android

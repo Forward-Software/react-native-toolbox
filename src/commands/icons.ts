@@ -6,11 +6,11 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-import {Command, flags} from '@oclif/command'
-import * as chalk from 'chalk'
-import {readFileSync, promises as fsp} from 'fs'
+import {Command, Flags} from '@oclif/core'
+import {cyan, green, red} from 'chalk'
 import * as Listr from 'listr'
-import {join} from 'path'
+import {readFileSync, promises as fsp} from 'node:fs'
+import {join} from 'node:path'
 import * as sharp from 'sharp'
 
 import {checkAssetFile, mkdirp} from '../utils/file-utils'
@@ -96,8 +96,8 @@ The base icon file should be at least 1024x1024px.
 `
 
   static flags = {
-    help: flags.help({char: 'h'}),
-    appName: flags.string({
+    help: Flags.help({char: 'h'}),
+    appName: Flags.string({
       char: 'a',
       description: "the appName used to build output assets path. Default is retrieved from 'app.json' file.",
       default: () => {
@@ -121,16 +121,16 @@ The base icon file should be at least 1024x1024px.
     },
   ]
 
-  async run() {
-    const {args, flags} = this.parse(Icons)
+  async run(): Promise<void> {
+    const {args, flags} = await this.parse(Icons)
 
     const sourceFilesExists = checkAssetFile(args.file)
     if (!sourceFilesExists) {
-      this.error(`Source file ${chalk.cyan(args.file)} not found! ${chalk.red('ABORTING')}`)
+      this.error(`Source file ${cyan(args.file)} not found! ${red('ABORTING')}`)
     }
 
     if (!flags.appName) {
-      this.error(`Failed to retrive ${chalk.cyan('appName')} value. Please specify it with the ${chalk.green('appName')} flag or check that ${chalk.cyan('app.json')} file exists. ${chalk.red('ABORTING')}`)
+      this.error(`Failed to retrive ${cyan('appName')} value. Please specify it with the ${green('appName')} flag or check that ${cyan('app.json')} file exists. ${red('ABORTING')}`)
     }
 
     this.log(`Generating icons for '${flags.appName}' app...`)
@@ -149,7 +149,7 @@ The base icon file should be at least 1024x1024px.
           {
             title: 'Generate icons',
             task: () => {
-              const iOSIconsTasks = iOSIconSizes.reduce((acc, sizeDef): Listr.ListrTask[] => {
+              const iOSIconsTasks = iOSIconSizes.flatMap(sizeDef => {
                 const {baseSize, name, scales} = sizeDef
                 const iOSIconScaleTasks: Listr.ListrTask[] = scales.map(scale => {
                   const filename = this.getIOSIconName(name, scale)
@@ -163,8 +163,8 @@ The base icon file should be at least 1024x1024px.
                   } as Listr.ListrTask
                 })
 
-                return acc.concat(iOSIconScaleTasks)
-              }, [] as Listr.ListrTask[])
+                return iOSIconScaleTasks
+              })
 
               return new Listr(iOSIconsTasks)
             },
@@ -194,7 +194,7 @@ The base icon file should be at least 1024x1024px.
 
               return fsp.writeFile(
                 join(iOSOutputDirPath, 'Contents.json'),
-                JSON.stringify(contentJson, null, 2)
+                JSON.stringify(contentJson, null, 2),
               )
             },
           },
@@ -217,11 +217,10 @@ The base icon file should be at least 1024x1024px.
           {
             title: 'Create launcher icons',
             task: () => {
-              const androidIconTasks = AndroidIconSizes.reduce((acc, {density, size}): Listr.ListrTask[] => {
-                const densityFolderPath = join(baseAndroidOutputDirPath, `res/mipmap-${density}`)
-
+              const androidIconTasks = AndroidIconSizes.flatMap(({density, size}) => {
                 const androidIconDensityTasks: Listr.ListrTask[] = []
 
+                const densityFolderPath = join(baseAndroidOutputDirPath, `res/mipmap-${density}`)
                 const densityFolderTask: Listr.ListrTask = {
                   title: `Create Android '${density}' assets folder`,
                   task: () => mkdirp(densityFolderPath),
@@ -242,8 +241,8 @@ The base icon file should be at least 1024x1024px.
                 }
                 androidIconDensityTasks.push(circleAndroidIconTask)
 
-                return acc.concat(androidIconDensityTasks)
-              }, [] as Listr.ListrTask[])
+                return androidIconDensityTasks
+              })
 
               return new Listr(androidIconTasks)
             },
@@ -255,7 +254,7 @@ The base icon file should be at least 1024x1024px.
     try {
       await workflow.run()
     } catch (error) {
-      this.error(error)
+      this.error(error as Error)
     }
   }
 
@@ -290,13 +289,13 @@ The base icon file should be at least 1024x1024px.
     if (type === MaskType.roundedCorners) {
       const cornerRadius = Math.floor(size * 0.1) // Calculate 10% corner radius
       return Buffer.from(
-        `<svg><rect x="0" y="0" width="${size}" height="${size}" rx="${cornerRadius}" ry="${cornerRadius}"/></svg>`
+        `<svg><rect x="0" y="0" width="${size}" height="${size}" rx="${cornerRadius}" ry="${cornerRadius}"/></svg>`,
       )
     }
 
     const radius = Math.floor(size / 2)
     return Buffer.from(
-      `<svg><circle cx="${radius}" cy="${radius}" r="${radius}" /></svg>`
+      `<svg><circle cx="${radius}" cy="${radius}" r="${radius}" /></svg>`,
     )
   }
 }

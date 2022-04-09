@@ -6,10 +6,10 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-import {Command, flags} from '@oclif/command'
-import * as chalk from 'chalk'
-import {promises as fsp} from 'fs'
+import {Command, Flags} from '@oclif/core'
+import {cyan, red} from 'chalk'
 import * as Listr from 'listr'
+import * as fsp from 'node:fs/promises'
 
 import {checkAssetFile} from '../utils/file-utils'
 
@@ -19,7 +19,7 @@ Manage .env files for react-native-dotenv for a specific environment (developmen
 `
 
   static flags = {
-    help: flags.help({char: 'h'}),
+    help: Flags.help({char: 'h'}),
   }
 
   static args = [
@@ -31,18 +31,18 @@ Manage .env files for react-native-dotenv for a specific environment (developmen
     },
   ]
 
-  async run() {
-    const {args} = this.parse(Dotenv)
+  async run(): Promise<void> {
+    const {args} = await this.parse(Dotenv)
 
     const sourceEnvFilePath = `./.env.${args.environmentName}`
     const outputEnvFile = './.env'
 
     const sourceFilesExists = checkAssetFile(sourceEnvFilePath)
     if (!sourceFilesExists) {
-      this.error(`Source file ${chalk.cyan(sourceEnvFilePath)} not found! ${chalk.red('ABORTING')}`)
+      this.error(`Source file ${cyan(sourceEnvFilePath)} not found! ${red('ABORTING')}`)
     }
 
-    this.log(`Generating .env from ${chalk.cyan(sourceEnvFilePath)} file...`)
+    this.log(`Generating .env from ${cyan(sourceEnvFilePath)} file...`)
 
     const workflow = new Listr([
       {
@@ -62,7 +62,7 @@ Manage .env files for react-native-dotenv for a specific environment (developmen
     try {
       await workflow.run()
     } catch (error) {
-      this.error(error)
+      this.error(error as Error)
     }
   }
 }

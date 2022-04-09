@@ -6,12 +6,12 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-import {existsSync, promises as fsp} from 'fs'
+import {existsSync, promises as fsp} from 'node:fs'
 
 export function checkAssetFile(filePath: string): boolean {
   return existsSync(filePath)
 }
 
-export function mkdirp(path: string): Promise<void> {
-  return fsp.mkdir(path, {recursive: true})
+export async function mkdirp(path: string): Promise<void> {
+  await fsp.mkdir(path, {recursive: true})
 }
