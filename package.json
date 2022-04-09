@@ -1,28 +1,20 @@
 {
-  "name": "@panz3r/react-native-toolbox",
+  "name": "@forward-software/react-native-toolbox",
   "version": "3.0.0",
   "description": "A set of scripts to simplify React Native development",
-  "author": {
-    "name": "Mattia Panzeri",
-    "email": "mattia.panzeri93@gmail.com",
-    "url": "https://github.com/panz3r"
-  },
+  "author": "ForWarD Software (https://github.com/Forward-Software)",
   "license": "MPL-2.0",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/panz3r/react-native-toolbox.git"
-  },
+  "repository": "https://github.com/forward-software/react-native-toolbox",
   "keywords": [
     "react-native",
     "scripts",
     "utils",
     "development"
   ],
-  "homepage": "https://github.com/panz3r/react-native-toolbox#readme",
+  "homepage": "https://github.com/forward-software/react-native-toolbox#readme",
   "bugs": {
-    "url": "https://github.com/panz3r/react-native-toolbox/issues"
+    "url": "https://github.com/forward-software/react-native-toolbox/issues"
   },
-  "funding": "https://buymeacoff.ee/4f18nT0Nk",
   "publishConfig": {
     "access": "public"
   },
